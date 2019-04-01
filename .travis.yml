@@ -36,7 +36,7 @@ before_install:
   # Install latest canary of emulator
   - sudo apt-get install -y libunwind8 libc++1
   - wget -q "https://dl.google.com/android/repository/emulator-linux-5346014.zip" -O emulator.zip
-  - unzip -q emulator.zip -d ${ANROID_HOME}
+  - unzip -q emulator.zip -d ${ANDROID_HOME}
   - rm emulator.zip
   - echo no | avdmanager create avd -n test -k "system-images;android-$SYS;$ABI"
   # emulator debug options
