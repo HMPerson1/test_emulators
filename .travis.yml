@@ -3,11 +3,6 @@
 # sudo and dist are ignored on osx
 sudo: required
 dist: trusty
-os:
-  - linux
-  - osx
-#services:
-#  - xvfb
 env:
   - SYS=28 ABI="google_apis;x86_64"
 
@@ -39,11 +34,10 @@ before_install:
   - sdkmanager --list | head -15
   - rm -rf $ANDROID_HOME/emulator
   # Install latest canary of emulator
-  - cd $ANDROID_HOME
   - sudo apt-get install -y libunwind8 libc++1
   - wget -q "https://dl.google.com/android/repository/emulator-linux-5346014.zip" -O emulator.zip
-  - unzip -q emulator.zip
-  - cd -
+  - unzip -q emulator.zip -d ${ANROID_HOME}
+  - rm emulator.zip
   - echo no | avdmanager create avd -n test -k "system-images;android-$SYS;$ABI"
   # emulator debug options
   - EMU_PARAMS="-no-boot-anim -gpu off"
